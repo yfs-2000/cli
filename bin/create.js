@@ -2,6 +2,7 @@
 const path = require('path')
 const fs = require('fs-extra')
 const inquirer = require('inquirer')
+const Generator = require('./Generator')
 module.exports = async function (name, options) {
     // 执行创建命令
 
@@ -41,4 +42,8 @@ module.exports = async function (name, options) {
             }
         }
     }
+    // 创建项目
+    const generator = new Generator(name, targetAir);
+
+    generator.create()
 }

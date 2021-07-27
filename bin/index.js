@@ -80,7 +80,7 @@ program
         console.log(value, options)
     })
 program
-    .command("create <app-name>")
+    .command("create <name>")
     .description("创建目录")
     .option("-f, --force")
     .action(require("./create"))
