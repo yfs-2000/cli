@@ -1,0 +1,25 @@
+//
+// "devDependencies": {
+//     "commander": "^8.0.0",
+//         "css-loader": "^6.2.0",
+//         "cssnano": "^5.0.7",
+//         "error-overlay-webpack-plugin": "^0.4.2",
+//         "eslint": "^7.31.0",
+//         "eslint-webpack-plugin": "^3.0.1",
+//         "file-loader": "^6.2.0",
+//         "friendly-errors-webpack-plugin": "^1.7.0",
+//         "html-loader": "^2.1.2",
+//         "html-webpack-plugin": "^5.3.2",
+//         "less-loader": "^10.0.1",
+//         "postcss-import": "^14.0.2",
+//         "postcss-loader": "^6.1.1",
+//         "postcss-preset-env": "^6.7.0",
+//         "sass-loader": "^12.1.0",
+//         "style-loader": "^3.2.1",
+//         "ts-loader": "^9.2.4",
+//         "typescript": "^4.3.5",
+//         "url-loader": "^4.1.1",
+//         "webpack": "^5.46.0",
+//         "webpack-cli": "^4.7.2",
+//         "webpack-dev-server": "^3.11.2"
+// }
