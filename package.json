@@ -1,5 +1,5 @@
 {
-  "name": "my-react-cli",
+  "name": "lux-react-cli",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -20,5 +20,10 @@
     "ora": "^5.4.1",
     "commander": "^8.1.0",
     "ejs": "^3.1.6"
-  }
+  },
+  "files": [
+    "bin",
+    "yarn.lock",
+    "package.json"
+  ]
 }
