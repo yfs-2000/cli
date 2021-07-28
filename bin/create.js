@@ -4,13 +4,12 @@ const fs = require('fs-extra')
 const inquirer = require('inquirer')
 const Generator = require('./Generator')
 module.exports = async function (name, options) {
-    // 执行创建命令
 
-    // 当前命令行选择的目录
+
+    // 当前命令行选择的目录 process node的api
     const cwd  = process.cwd();
     // 需要创建的目录地址
     const targetAir  = path.join(cwd, name)
-
     // 目录是否已经存在？
     if (fs.existsSync(targetAir)) {
 
@@ -44,6 +43,6 @@ module.exports = async function (name, options) {
     }
     // 创建项目
     const generator = new Generator(name, targetAir);
-
+    // 执行创建命令
     generator.create()
 }

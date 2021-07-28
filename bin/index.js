@@ -71,9 +71,9 @@ const figlet = require("figlet")
 // program.parse()
 
 program
-    .command('config [value]')
+    .command('config [value]') //[value]为可选  <>为必选
     .description('inspect and modify the config')
-    .option('-g, --get <path>', 'get value from option')
+    .option('-g, --get <path>', 'get value from option',"path") //-g代表短选项  --get代表长选项 []为可选  <>为必选 第三个参数为默认
     .option('-s, --set <path> <value>')
     .option('-d, --delete <path>', 'delete option from config')
     .action((value, options) => {
@@ -82,7 +82,7 @@ program
 program
     .command("create <name>")
     .description("创建目录")
-    .option("-f, --force")
+    .option("-f, --force") //覆盖目录? 传了为true 没传为unundefined
     .action(require("./create"))
 // 配置 ui 命令
 program
@@ -105,7 +105,7 @@ program
             whitespaceBreak: true
         }));
         // 新增说明信息
-        console.log(`\r\nRun ${chalk.cyan(`roc <command> --help`)} show details\r\n`)
+        console.log(`\r\n请输入 ${chalk.cyan(`my-react-cli <command>`)} 执行不同脚本\r\n`)
     })
 
 

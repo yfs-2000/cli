@@ -40,14 +40,13 @@ class Generator {
     async download(repo, tag){
 
         // 1）拼接下载地址
-        const requestUrl = `zhurong-cli/${repo}${tag?'#'+tag:''}`;
-
+        const requestUrl = `yfs-2000/${repo}${tag?'#'+tag:''}`;
         // 2）调用下载方法
         await wrapLoading(
             this.downloadGitRepo, // 远程下载方法
-            'waiting download template', // 加载提示信息
+            '正在下载远程模板', // 加载提示信息
             requestUrl, // 参数1: 下载地址
-            path.resolve(process.cwd(), this.targetDir)) // 参数2: 创建位置
+            this.targetDir) // 参数2: 创建位置 path.resolve(process.cwd(), this.targetDir)
     }
 
     // 获取用户选择的模板
@@ -58,10 +57,10 @@ class Generator {
     async getRepo() {
         // 1）从远程拉取模板数据
         const repoList = await wrapLoading(getRepoList, 'waiting fetch template');
-        if (!repoList) return;
+        if (!repoList || repoList.length === 0) return;
 
         // 过滤我们需要的模板名称
-        const repos = repoList.map(item => item.name);
+        const repos = repoList.map(item => item.name).filter((item)=>item.includes("library"))
 
         // 2）用户选择自己新下载的模板名称
         const { repo } = await inquirer.prompt({
@@ -82,7 +81,7 @@ class Generator {
     async getTag(repo) {
         // 1）基于 repo 结果，远程拉取对应的 tag 列表
         const tags = await wrapLoading(getTagList, 'waiting fetch tag', repo);
-        if (!tags) return;
+        if (!tags||tags.length === 0) return;
 
         // 过滤我们需要的 tag 名称
         const tagsList = tags.map(item => item.name);
@@ -94,7 +93,7 @@ class Generator {
             choices: tagsList,
             message: 'Place choose a tag to create project'
         })
-
+        //name 为读取的字段属性   choices为list时的数组 type可以为input list password等
         // 3）return 用户选择的 tag
         return tag
     }
@@ -102,6 +101,9 @@ class Generator {
    async create(){
         // 1）获取模板名称
         const repo = await this.getRepo()
+       if (!repo){
+           return new Error("该仓库无模板")
+       }
         const tag = await this.getTag(repo)
 
        // 3）下载模板到模板目录
