@@ -4,6 +4,7 @@ const inquirer = require('inquirer')
 const util = require('util');
 const path = require('path');
 const chalk = require('chalk');
+const access_token = require('../access_token')
 const downloadGitRepo = require('download-git-repo') // 不支持 Promise
 // 添加加载动画
 async function wrapLoading(fn, message, ...args) {
@@ -40,13 +41,16 @@ class Generator {
     async download(repo, tag){
 
         // 1）拼接下载地址
-        const requestUrl = `yfs-2000/${repo}${tag?'#'+tag:''}`;
-        // 2）调用下载方法
-        await wrapLoading(
-            this.downloadGitRepo, // 远程下载方法
-            '正在下载远程模板', // 加载提示信息
-            requestUrl, // 参数1: 下载地址
-            this.targetDir) // 参数2: 创建位置 path.resolve(process.cwd(), this.targetDir)
+        const requestUrl =`direct:https://gitee.com/LuxTeam/component-library.git` //`yfs-2000/${repo}${tag?'#'+tag:''}`;
+            // 2）调用下载方法
+            await wrapLoading(
+                this.downloadGitRepo, // 远程下载方法
+                '正在下载远程模板', // 加载提示信息
+                requestUrl, // 参数1: 下载地址
+                this.targetDir,(err)=>{
+                    console.log(err);
+                }) // 参数2: 创建位置 path.resolve(process.cwd(), this.targetDir)
+
     }
 
     // 获取用户选择的模板
@@ -58,7 +62,6 @@ class Generator {
         // 1）从远程拉取模板数据
         const repoList = await wrapLoading(getRepoList, 'waiting fetch template');
         if (!repoList || repoList.length === 0) return;
-
         // 过滤我们需要的模板名称
         const repos = repoList.map(item => item.name).filter((item)=>item.includes("library"))
 
@@ -104,10 +107,10 @@ class Generator {
        if (!repo){
            return new Error("该仓库无模板")
        }
-        const tag = await this.getTag(repo)
+        //const tag = await this.getTag(repo)
 
        // 3）下载模板到模板目录
-       await this.download(repo, tag)
+       await this.download(repo, "")
 
        // 4）模板使用提示
        console.log(`\r\nSuccessfully created project ${chalk.cyan(this.name)}`)
