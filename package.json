@@ -1,16 +1,15 @@
 {
   "name": "lux-react-cli",
-  "version": "1.0.2",
-  "description": "",
+  "version": "1.0.4",
+  "description": "为公司的一些简单模板做的cli",
   "main": "index.js",
   "bin": "./bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "yangshanfa",
   "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "axios": "^0.21.1",
     "chalk": "^4.1.1",
     "download-git-repo": "^3.0.2",
@@ -21,6 +20,7 @@
     "commander": "^8.1.0",
     "ejs": "^3.1.6"
   },
+  "devDependencies": {},
   "files": [
     "bin"
   ]
